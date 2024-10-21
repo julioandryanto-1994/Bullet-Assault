@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private GameObject destroyedVFX;
+
     public float Speed = 2f;
 
     public int hp;
@@ -54,8 +56,16 @@ public class Enemy : MonoBehaviour
         hp--;
         if (hp <= 0)
         {
-            //TODO : Muncul destroy vfx
+            //TODO : VFX harus dimasukin ke pooler juga
+            Instantiate(destroyedVFX, gameObject.transform.position, Quaternion.identity);
+
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        //TODO : Pakai pooler
+        Destroy(gameObject);
     }
 }
