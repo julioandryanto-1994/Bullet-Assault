@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private GameObject destroyedVFX;
+    [SerializeField] private GameObject explosionVFX;
     [SerializeField] private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
@@ -57,9 +58,36 @@ public class Enemy : MonoBehaviour
             if (!collision.GetComponent<Projectile>().isPiercing)
             {
                 //TODO : Harus diganti dengan object pooler
+                //jika not piercing, maka menghancurkan projectile
+                if (collision.GetComponent<Projectile>().isExplosive)
+                {
+                    Explode(collision.transform.position);
+                }
                 Destroy(collision.gameObject);
             }
+            else if (collision.GetComponent<Projectile>().isPiercing && collision.GetComponent<Projectile>().isExplosive)
+            {
+                Explode(collision.transform.position);
+            }
+
         }
+    }
+
+    private void Explode(Vector3 explosionPosition)
+    {
+        // detect enemy on radius
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(explosionPosition, Player.instance.explosionRadius);
+
+        foreach (Collider2D hit in hitEnemies)
+        {
+            Enemy enemy = hit.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(); // Apply damage to each enemy hit by the explosion
+            }
+        }
+        // Spawn explosive vfx
+        Instantiate(explosionVFX, explosionPosition, Quaternion.identity);
     }
 
     private void TakeDamage()
