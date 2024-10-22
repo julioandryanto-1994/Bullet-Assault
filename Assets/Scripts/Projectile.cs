@@ -13,12 +13,9 @@ public class Projectile : MonoBehaviour
     public TrailRenderer trailRenderer;
 
     private Rigidbody2D rb;
-    private ObjectPooler pooler;
-
 
     private void OnEnable()
     {
-        pooler = FindFirstObjectByType<ObjectPooler>();
 
         if (rb == null)
         {
@@ -60,7 +57,7 @@ public class Projectile : MonoBehaviour
     {
         if (transform.position.y > Camera.main.orthographicSize)
         {
-            pooler.ReturnPooledObject(gameObject);
+            ProjectilePooler.instance.ReturnPooledObject(gameObject);
         }
     }
 }

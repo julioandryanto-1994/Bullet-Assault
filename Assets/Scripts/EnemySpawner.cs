@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject prefab; 
     public float spawnerInterval = 2f;
 
     [SerializeField] private int currentWave = 0;
@@ -37,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
                 
                 GameObject enemy = EnemyPooler.instance.GetPoolObject();
-
+                enemy.SetActive(true);
                 if (enemy != null)
                 {
                     float xPosition = Random.Range(Camera.main.ViewportToWorldPoint(new Vector3(0.2f, 0f, 0f)).x, Camera.main.ViewportToWorldPoint(new Vector3(0.8f, 0f, 0f)).x);
@@ -46,12 +45,13 @@ public class EnemySpawner : MonoBehaviour
 
                     //Set Postiion
                     enemy.transform.position = new Vector3(xPosition, yPosition, 0f);
+                    Debug.Log(enemy.name);
                     //Set Hp
                     //TODO : Harus cari cara untuk tidak terlalu menggunakan GetComponent (Bisa explore pakai Interface)
                     enemy.GetComponent<Enemy>().maxHp = enemyHp;
                     enemy.GetComponent<Enemy>().hp = enemyHp;
 
-                    enemy.SetActive(true);
+ 
                 }
             }
 

@@ -7,7 +7,7 @@ public class ObjectPooler : MonoBehaviour
     public GameObject prefab;
     public int initialPooler = 10;
     public int expandSize = 5;
-    private Queue<GameObject> gameObjectPooler;
+    [SerializeField] private Queue<GameObject> gameObjectPooler;
 
     protected virtual void Awake()
     {

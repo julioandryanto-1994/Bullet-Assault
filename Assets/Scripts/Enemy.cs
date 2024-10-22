@@ -93,6 +93,6 @@ public class Enemy : MonoBehaviour
     private void OnBecameInvisible()
     {
         //TODO : Pakai pooler
-        Destroy(gameObject);
+        EnemyPooler.instance.ReturnPooledObject(gameObject);
     }
 }
