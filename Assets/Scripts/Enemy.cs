@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
             //TODO : VFX harus dimasukin ke pooler juga
             Instantiate(destroyedVFX, gameObject.transform.position, Quaternion.identity);
             Player.instance.UpdatePower(1);
-            gameObject.SetActive(false);
+            EnemyPooler.instance.ReturnPooledObject(gameObject);
         }
         else
         {
