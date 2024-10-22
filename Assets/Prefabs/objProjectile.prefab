@@ -112,10 +112,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e559bfbc4aaa93419d8d9ce1a8b7bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionVFX: {fileID: 8136308181877247605, guid: 2d9c0d580a551a5468fb357932b1d7a7, type: 3}
   Speed: 10
   Direction: {x: 0, y: 0}
   isPiercing: 0
   isSlowing: 0
+  isExplosive: 0
   spriteRenderer: {fileID: 5060097151312959220}
   spriteRendererSlow: {fileID: 6435914895180000451}
   trailRenderer: {fileID: 3084515120844254004}

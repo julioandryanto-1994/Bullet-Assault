@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48892f0d551a0714abd028584f6a7d20, type: 3}
+  m_Name: Skill2_SpreadShoot
+  m_EditorClassIdentifier: 
+  SkillID: 2
+  SkillName: Spread Shoot
+  SkillIcon: {fileID: 1004480198, guid: 49382d07b5642a44ba1131c7d2cb1844, type: 3}
