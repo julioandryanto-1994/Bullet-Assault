@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private GameObject destroyedVFX;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
     public float Speed = 2f;
 
@@ -16,10 +18,17 @@ public class Enemy : MonoBehaviour
         hp = maxHp;
     }
 
+    private void OnDisable()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         hp = maxHp;
+
+        originalColor = spriteRenderer.color; // Store the original color
     }
 
     // Update is called once per frame
@@ -45,9 +54,11 @@ public class Enemy : MonoBehaviour
         else if (collision.CompareTag("Projectile"))
         {
             TakeDamage();
-
-            //TODO : Harus diganti dengan object pooler
-            Destroy(collision.gameObject);
+            if (!collision.GetComponent<Projectile>().isPiercing)
+            {
+                //TODO : Harus diganti dengan object pooler
+                Destroy(collision.gameObject);
+            }
         }
     }
 
@@ -58,9 +69,25 @@ public class Enemy : MonoBehaviour
         {
             //TODO : VFX harus dimasukin ke pooler juga
             Instantiate(destroyedVFX, gameObject.transform.position, Quaternion.identity);
-
+            Player.instance.UpdatePower(1);
             gameObject.SetActive(false);
         }
+        else
+        {
+            StartCoroutine(ChangeColor());
+        }
+    }
+
+    private IEnumerator ChangeColor()
+    {
+        // Change to white
+        spriteRenderer.color = Color.white;
+
+        // Wait for 0.1 seconds
+        yield return new WaitForSeconds(0.05f);
+
+        // Change back to the original color
+        spriteRenderer.color = originalColor;
     }
 
     private void OnBecameInvisible()

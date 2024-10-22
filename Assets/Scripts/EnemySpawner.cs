@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
             enemyToSpawn++;
 
             int enemyHp = baseEnemyHp;
-            if (currentWave % 5 == 0)
+            if (currentWave % 20 == 0)
             {
                 baseEnemyHp++;
                 enemyToSpawn = 1;
@@ -34,6 +34,7 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < enemyToSpawn; i++)
             {
+                yield return new WaitForSeconds(0.2f);
                 //TODO : harus ganti ke object pooler
                 GameObject enemy = Instantiate(prefab);
 
@@ -47,7 +48,9 @@ public class EnemySpawner : MonoBehaviour
                     enemy.transform.position = new Vector3(xPosition, yPosition, 0f);
                     //Set Hp
                     //TODO : Harus cari cara untuk tidak terlalu menggunakan GetComponent (Bisa explore pakai Interface)
+                    enemy.GetComponent<Enemy>().maxHp = enemyHp;
                     enemy.GetComponent<Enemy>().hp = enemyHp;
+
                 }
             }
 
