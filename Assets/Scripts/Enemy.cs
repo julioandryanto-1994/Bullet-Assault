@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private GameObject destroyVFX;
-    public float speed = 2f;
-    public int hp;
-    public int maxhp = 1;
+    [SerializeField] private GameObject destroyedVFX;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
-    private void OnEnable()
+    public float Speed = 2f;
+
+    public int hp;
+    public int maxHp = 1;
+
+    void OnEnable()
     {
-        hp = maxhp;
+        hp = maxHp;
     }
+
+    private void OnDisable()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        hp = maxhp;
+        hp = maxHp;
+
+        originalColor = spriteRenderer.color; // Store the original color
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down * speed * Time.deltaTime);
+        transform.Translate(Vector2.down * Speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,7 +44,7 @@ public class Enemy : MonoBehaviour
             Player player = collision.GetComponent<Player>();
             if (player != null)
             {
-                //Player take damage
+                //Player take damge
                 Debug.Log("Player Kena Damage");
             }
 
@@ -42,25 +54,45 @@ public class Enemy : MonoBehaviour
         else if (collision.CompareTag("Projectile"))
         {
             TakeDamage();
-
-            Destroy(collision.gameObject);
+            if (!collision.GetComponent<Projectile>().isPiercing)
+            {
+                //TODO : Harus diganti dengan object pooler
+                Destroy(collision.gameObject);
+            }
         }
     }
 
     private void TakeDamage()
     {
         hp--;
-        if(hp <= 0)
+        if (hp <= 0)
         {
-            //TODO : Muncul destroy vfx, VFX masukkan ke poller
-            Instantiate(destroyVFX, gameObject.transform.position, Quaternion.identity);
+            //TODO : VFX harus dimasukin ke pooler juga
+            Instantiate(destroyedVFX, gameObject.transform.position, Quaternion.identity);
+            Player.instance.UpdatePower(1);
             gameObject.SetActive(false);
         }
+        else
+        {
+            StartCoroutine(ChangeColor());
+        }
+    }
+
+    private IEnumerator ChangeColor()
+    {
+        // Change to white
+        spriteRenderer.color = Color.white;
+
+        // Wait for 0.1 seconds
+        yield return new WaitForSeconds(0.05f);
+
+        // Change back to the original color
+        spriteRenderer.color = originalColor;
     }
 
     private void OnBecameInvisible()
     {
-        //TODO : pakai poller
+        //TODO : Pakai pooler
         Destroy(gameObject);
     }
 }

@@ -23,7 +23,7 @@ public class ObjectPooler : MonoBehaviour
         if (gameObjectPooler.Count > 0)
         {
             GameObject poolObject = gameObjectPooler.Dequeue();
-            poolObject.SetActive(true);
+            //poolObject.SetActive(true);
             return poolObject;
         }
         else
