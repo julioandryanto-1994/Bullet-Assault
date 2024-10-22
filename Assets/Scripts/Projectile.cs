@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public Vector2 Direction;
     public bool isPiercing;
     public bool isSlowing;
+    public bool isExplosive;
     public SpriteRenderer spriteRenderer;
     public GameObject spriteRendererSlow;
     public TrailRenderer trailRenderer;
@@ -59,5 +60,23 @@ public class Projectile : MonoBehaviour
         {
             ProjectilePooler.instance.ReturnPooledObject(gameObject);
         }
+    }
+
+
+    private void Explode(Vector3 explosionPosition)
+    {
+        // detect enemy on radius
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(explosionPosition, Player.instance.explosionRadius);
+
+        foreach (Collider2D hit in hitEnemies)
+        {
+            Enemy enemy = hit.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(); // Apply damage to each enemy hit by the explosion
+            }
+        }
+        // Spawn explosive vfx
+        Instantiate(explosionVFX, explosionPosition, Quaternion.identity);
     }
 }

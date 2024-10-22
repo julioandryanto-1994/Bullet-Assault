@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isPiercingShoot;
     [SerializeField] private bool isSlowBullet;
 
+    //Explosion
+    [SerializeField] private bool isExplosive;
+    [SerializeField] public float explosionRadius = 2f;
+
 
     private void Awake()
     {
@@ -127,6 +131,7 @@ public class Player : MonoBehaviour
             Projectile projectileScript = projectile.GetComponent<Projectile>();
             projectileScript.isPiercing = isPiercingShoot;
             projectileScript.isSlowing = isSlowBullet;
+            projectileScript.isExplosive = isExplosive;
 
             projectile.SetActive(true);
         }
@@ -155,6 +160,7 @@ public class Player : MonoBehaviour
                 projectileScript.Direction = direction;
                 projectileScript.isPiercing = isPiercingShoot;
                 projectileScript.isSlowing = isSlowBullet;
+                projectileScript.isExplosive = isExplosive;
 
                 projectile.SetActive(true);
             }
@@ -197,6 +203,11 @@ public class Player : MonoBehaviour
         imgPowerUp.fillAmount = power / maxPower;
     }
 
+    private void ExplosiveBullet()
+    {
+        isExplosive = true;
+    }
+
     private void PowerUp()
     {
         int randomNumber = Random.Range(0, 5);
@@ -214,6 +225,9 @@ public class Player : MonoBehaviour
                 break;
             case 3:
                 SlowBullet();
+                break;
+            case 4:
+                ExplosiveBullet();
                 break;
             default:
                 break;

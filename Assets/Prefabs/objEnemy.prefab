@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyedVFX: {fileID: 4992944582734476209, guid: 3adc6702730e18144b49bbbd890115ad, type: 3}
+  explosionVFX: {fileID: 8136308181877247605, guid: 2d9c0d580a551a5468fb357932b1d7a7, type: 3}
   spriteRenderer: {fileID: 4092913890472429424}
   Speed: 2
   hp: 0

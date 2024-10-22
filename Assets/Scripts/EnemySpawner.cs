@@ -54,7 +54,6 @@ public class EnemySpawner : MonoBehaviour
  
                 }
             }
-
             yield return new WaitForSeconds(spawnerInterval);
         }
     }

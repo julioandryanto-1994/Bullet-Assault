@@ -441,6 +441,8 @@ MonoBehaviour:
   isSpreadShoot: 0
   isPiercingShoot: 0
   isSlowBullet: 0
+  isExplosive: 0
+  explosionRadius: 2
 --- !u!1 &899785754
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cf508683fcc2c449b53d28d158951c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2195005880164996508, guid: a6536b87a35341d48be541052f690cf8, type: 3}
   spawnerInterval: 2
   currentWave: 0
   enemyToSpawn: 0
