@@ -25,6 +25,7 @@ public class Projectile : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
         }
 
+        /*
         if (Direction != Vector2.zero)
         {
             rb.velocity = Direction * Speed;
@@ -33,6 +34,8 @@ public class Projectile : MonoBehaviour
         {
             rb.velocity = transform.up * Speed;
         }
+        */
+        rb.velocity = Direction != Vector2.zero ? Direction * Speed : transform.up * Speed;
 
         trailRenderer.enabled = isPiercing;
 

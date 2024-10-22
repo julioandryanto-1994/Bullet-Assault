@@ -35,8 +35,8 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < enemyToSpawn; i++)
             {
                 yield return new WaitForSeconds(0.2f);
-                //TODO : harus ganti ke object pooler
-                GameObject enemy = Instantiate(prefab);
+                
+                GameObject enemy = EnemyPooler.instance.GetPoolObject();
 
                 if (enemy != null)
                 {
@@ -51,6 +51,7 @@ public class EnemySpawner : MonoBehaviour
                     enemy.GetComponent<Enemy>().maxHp = enemyHp;
                     enemy.GetComponent<Enemy>().hp = enemyHp;
 
+                    enemy.SetActive(true);
                 }
             }
 

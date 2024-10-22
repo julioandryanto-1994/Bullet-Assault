@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    //Singleton  : Syaratnya object ini harus tunggal
     public static Player instance;
 
     //Movement

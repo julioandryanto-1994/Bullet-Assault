@@ -9,7 +9,7 @@ public class ObjectPooler : MonoBehaviour
     public int expandSize = 5;
     private Queue<GameObject> gameObjectPooler;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         gameObjectPooler = new Queue<GameObject>();
         for (int i = 0; i < initialPooler; i++)
