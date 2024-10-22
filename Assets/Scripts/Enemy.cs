@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private GameObject destroyVFX;
     public float speed = 2f;
     public int hp;
     public int maxhp = 1;
@@ -51,7 +52,15 @@ public class Enemy : MonoBehaviour
         hp--;
         if(hp <= 0)
         {
+            //TODO : Muncul destroy vfx, VFX masukkan ke poller
+            Instantiate(destroyVFX, gameObject.transform.position, Quaternion.identity);
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        //TODO : pakai poller
+        Destroy(gameObject);
     }
 }
