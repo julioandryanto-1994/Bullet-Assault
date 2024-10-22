@@ -7,9 +7,9 @@ public class ObjectPooler : MonoBehaviour
     public GameObject prefab;
     public int initialPooler = 10;
     public int expandSize = 5;
-    private Queue<GameObject> gameObjectPooler;
+    [SerializeField] private Queue<GameObject> gameObjectPooler;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         gameObjectPooler = new Queue<GameObject>();
         for (int i = 0; i < initialPooler; i++)
@@ -23,7 +23,7 @@ public class ObjectPooler : MonoBehaviour
         if (gameObjectPooler.Count > 0)
         {
             GameObject poolObject = gameObjectPooler.Dequeue();
-            poolObject.SetActive(true);
+            //poolObject.SetActive(true);
             return poolObject;
         }
         else

@@ -5,14 +5,44 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float Speed = 10f;
+    public Vector2 Direction;
+    public bool isPiercing;
+    public bool isSlowing;
+    public SpriteRenderer spriteRenderer;
+    public GameObject spriteRendererSlow;
+    public TrailRenderer trailRenderer;
+
     private Rigidbody2D rb;
-    private ObjectPooler pooler;
 
     private void OnEnable()
     {
-        pooler = FindObjectOfType<ObjectPooler>();
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector3.up * Speed;
+
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
+
+        /*
+        if (Direction != Vector2.zero)
+        {
+            rb.velocity = Direction * Speed;
+        }
+        else
+        {
+            rb.velocity = transform.up * Speed;
+        }
+        */
+        rb.velocity = Direction != Vector2.zero ? Direction * Speed : transform.up * Speed;
+
+        trailRenderer.enabled = isPiercing;
+
+        spriteRendererSlow.SetActive(isSlowing);
+
+    }
+
+    private void OnDisable()
+    {
+        trailRenderer.enabled = false;
     }
 
 
@@ -27,7 +57,7 @@ public class Projectile : MonoBehaviour
     {
         if (transform.position.y > Camera.main.orthographicSize)
         {
-            pooler.ReturnPooledObject(gameObject);
+            ProjectilePooler.instance.ReturnPooledObject(gameObject);
         }
     }
 }

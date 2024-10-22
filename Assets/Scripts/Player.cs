@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    //Singleton  : Syaratnya object ini harus tunggal
+    public static Player instance;
+
     //Movement
     private Vector3 offset;
     private bool dragging = false;
@@ -15,10 +19,36 @@ public class Player : MonoBehaviour
     public float shootRate = 0.5f;
     private float shootTimer;
 
+    // Spread shooting parameters
+    public int spreadCount = 3; // Number of projectiles to shoot
+    public float spreadAngle = 15f; // Angle between projectiles
+
+    //Power Up
+    [SerializeField] private Image imgPowerUp;
+    public float power = 0;
+    public float maxPower = 5;
+
+    //Simple Roguelike
+    [Header("Runtime")]
+    [SerializeField] private bool isSpreadShoot;
+    [SerializeField] private bool isPiercingShoot;
+    [SerializeField] private bool isSlowBullet;
+
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        UpdatePowerUpUI();
     }
 
     // Update is called once per frame
@@ -49,8 +79,21 @@ public class Player : MonoBehaviour
         shootTimer += Time.deltaTime;
         if (shootTimer >= shootRate)
         {
-            Shoot();
+            if (!isSpreadShoot)
+            {
+                Shoot();
+            }
+            else
+            {
+                SpreadShoot();
+            }
+
             shootTimer = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) // Check for space key to trigger spread shooting
+        {
+            RapidFire();
         }
     }
 
@@ -81,6 +124,99 @@ public class Player : MonoBehaviour
         if (projectile != null)
         {
             projectile.transform.position = shootPoint.position;
+            Projectile projectileScript = projectile.GetComponent<Projectile>();
+            projectileScript.isPiercing = isPiercingShoot;
+            projectileScript.isSlowing = isSlowBullet;
+
+            projectile.SetActive(true);
+        }
+    }
+
+    private void SpreadShoot()
+    {
+        // Spread shooting logic
+        float angleStep = spreadAngle / (spreadCount - 1);
+        float startAngle = -spreadAngle / 2;
+
+        for (int i = 0; i < spreadCount; i++)
+        {
+            GameObject projectile = projectilePooler.GetPoolObject();
+            if (projectile != null)
+            {
+                projectile.transform.position = shootPoint.position;
+
+                // Calculate the rotation based on the angle
+                float angle = startAngle + (i * angleStep);
+                projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+                Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.up; // Calculate direction from angle
+
+                Projectile projectileScript = projectile.GetComponent<Projectile>();
+                projectileScript.Direction = direction;
+                projectileScript.isPiercing = isPiercingShoot;
+                projectileScript.isSlowing = isSlowBullet;
+
+                projectile.SetActive(true);
+            }
+        }
+    }
+
+    private void GaindSpreadShoot()
+    {
+        isSpreadShoot = true;
+    }
+
+    private void RapidFire()
+    {
+        shootRate -= 0.05f;
+    }
+
+    private void PiercingBullet()
+    {
+        isPiercingShoot = true;
+    }
+
+    private void SlowBullet()
+    {
+        isSlowBullet = true;
+    }
+
+    public void UpdatePower(int number)
+    {
+        power += number;
+        if (power > maxPower)
+        {
+            power = 0;
+            PowerUp();
+        }
+        UpdatePowerUpUI();
+    }
+
+    private void UpdatePowerUpUI()
+    {
+        imgPowerUp.fillAmount = power / maxPower;
+    }
+
+    private void PowerUp()
+    {
+        int randomNumber = Random.Range(0, 5);
+        maxPower++;
+        switch (randomNumber)
+        {
+            case 0:
+                GaindSpreadShoot();
+                break;
+            case 1:
+                RapidFire();
+                break;
+            case 2:
+                PiercingBullet();
+                break;
+            case 3:
+                SlowBullet();
+                break;
+            default:
+                break;
         }
     }
 }
