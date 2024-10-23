@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public GameObject PnlSkillSelection;
+    public UIScore pnlScore;
 
     private void Awake()
     {
