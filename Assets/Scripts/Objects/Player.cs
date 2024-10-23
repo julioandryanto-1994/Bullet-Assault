@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -41,6 +42,13 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isExplosive;
     [SerializeField] public float explosionRadius = 2f;
 
+    //Score
+    private int score = 0;
+
+    public void addScore()
+    {
+        score++; UIManager.Instance.pnlScore.UpdateScore(score);
+    }
 
     private void Awake()
     {

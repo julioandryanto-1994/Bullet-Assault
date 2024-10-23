@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     public int hp;
     public int maxHp = 1;
+
 
     void OnEnable()
     {
@@ -38,7 +40,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down * (Speed * Time.deltaTime));
+        transform.Translate(Vector2.down * Speed * Time.deltaTime);
+
+        
+        if (transform.position.y < -Camera.main.orthographicSize)
+        {
+            EnemyPooler.instance.ReturnPooledObject(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -101,8 +109,9 @@ public class Enemy : MonoBehaviour
         {
             //TODO : VFX harus dimasukin ke pooler juga
             Instantiate(destroyedVFX, gameObject.transform.position, Quaternion.identity);
+            Player.instance.addScore();
             Player.instance.UpdatePower(1);
-            EnemyPooler.instance.ReturnPooledObject(gameObject);
+            EnemyPooler.instance.ReturnPooledObject(gameObject); 
         }
         else
         {
@@ -124,7 +133,7 @@ public class Enemy : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        //TODO : Pakai pooler
         EnemyPooler.instance.ReturnPooledObject(gameObject);
     }
+
 }
