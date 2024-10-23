@@ -36,6 +36,13 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.down * Speed * Time.deltaTime);
+
+        
+        if (transform.position.y < -Camera.main.orthographicSize)
+        {
+            EnemyPooler.instance.ReturnPooledObject(gameObject);
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -120,7 +127,7 @@ public class Enemy : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        //TODO : Pakai pooler
         EnemyPooler.instance.ReturnPooledObject(gameObject);
     }
+
 }
