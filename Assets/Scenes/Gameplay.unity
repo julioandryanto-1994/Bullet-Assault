@@ -1899,6 +1899,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295023910}
   m_CullTransparentMesh: 1
+--- !u!114 &1308681803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8460055129201297841, guid: 99146489f5c288c41a3ee55dddaa30e5, type: 3}
+  m_PrefabInstance: {fileID: 1786311221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64393f16f5b15944a95d212f32ac6da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1318690224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,7 +2497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PnlSkillSelection: {fileID: 66803522}
-  pnlScore: {fileID: 0}
+  pnlScore: {fileID: 1308681803}
 --- !u!114 &2047095396
 MonoBehaviour:
   m_ObjectHideFlags: 0
