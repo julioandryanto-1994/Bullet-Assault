@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillID: 3
   SkillName: Pierching
-  SkillIcon: {fileID: 1004480198, guid: 49382d07b5642a44ba1131c7d2cb1844, type: 3}
+  SkillIcon: {fileID: 1923245916, guid: 75a79dcce901e4056a69905d822d8c71, type: 3}

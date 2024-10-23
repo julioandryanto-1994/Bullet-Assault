@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillID: 0
   SkillName: Explosion
-  SkillIcon: {fileID: -1241363435, guid: 49382d07b5642a44ba1131c7d2cb1844, type: 3}
+  SkillIcon: {fileID: -1225325158, guid: 519d61fd27aec404a86d889238365e64, type: 3}

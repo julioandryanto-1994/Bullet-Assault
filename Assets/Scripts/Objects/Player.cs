@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -57,29 +58,7 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        //PC or Editor
-        if (Input.GetMouseButton(0))
-        { 
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-
-            if (Input.GetMouseButtonDown(0) && IsTouchingObject(mousePos))
-            {
-                dragging = true;
-                offset = transform.position - mousePos;
-            }
-
-            if (dragging)
-            {
-                MovePlayer(mousePos + offset);
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            { 
-                dragging = false;
-            }
-        }
-
+    { 
         shootTimer += Time.deltaTime;
         if (shootTimer >= shootRate)
         {
@@ -93,6 +72,34 @@ public class Player : MonoBehaviour
             }
 
             shootTimer = 0;
+        }
+
+        //PC or Editor
+        if (Input.GetMouseButton(0))
+        {
+            // Check if pointer is over UI
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+
+            if (Input.GetMouseButtonDown(0) && IsTouchingObject(mousePos))
+            {
+                dragging = true;
+                offset = transform.position - mousePos;
+            }
+
+            if (dragging)
+            {
+                MovePlayer(mousePos);
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                dragging = false;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) // Check for space key to trigger spread shooting
@@ -195,7 +202,9 @@ public class Player : MonoBehaviour
         if (power > maxPower)
         {
             power = 0;
-            //UIManager.Instance.PnlSkillSelection.SetActive(true);
+            maxPower += 2;
+            UIManager.Instance.PnlSkillSelection.SetActive(true);
+            Time.timeScale = 0;
         }
         UpdatePowerUpUI();
     }
@@ -212,18 +221,19 @@ public class Player : MonoBehaviour
 
     public void PowerUp(int skillIndex)
     {
-        int randomNumber = Random.Range(0, 5);
+        Time.timeScale = 1;
+
         maxPower++;
-        switch (randomNumber)
+        switch (skillIndex)
         {
             case 0:
-                GaindSpreadShoot();
+                ExplosiveBullet();
                 break;
             case 1:
                 RapidFire();
                 break;
             case 2:
-                SpreadShoot();
+                GaindSpreadShoot();
                 break;
             case 3:
                 PiercingBullet();
@@ -232,12 +242,12 @@ public class Player : MonoBehaviour
                 SlowBullet();
                 break;
             case 5:
-                ExplosiveBullet();
+                SlowBullet();
                 break;
             default:
                 break;
         }
 
-        //UIManager.Instance.PnlSkillSelection.SetActive(false);
+        UIManager.Instance.PnlSkillSelection.SetActive(false);
     }
 }

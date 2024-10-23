@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UISkillSelection : MonoBehaviour
 {
     public List<SOSkill> skillList = new List<SOSkill>();
+    public List<SOSkill> skills = new List<SOSkill>();
+
     public List<Button> btnSkillSelection = new List<Button>();
     public List<TextMeshProUGUI> txtSkillNames = new List<TextMeshProUGUI>();
     public List<Image> imgSkill = new List<Image>();
@@ -18,8 +20,12 @@ public class UISkillSelection : MonoBehaviour
 
     private void GetRandomSkill()
     {
-        List<SOSkill> skills = new List<SOSkill>();
-        skills = skillList;
+        skills = new List<SOSkill>();
+
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            skills.Add(skillList[i]);
+        }
 
         for (int i = 0; i < 3; i++)
         { 
@@ -27,9 +33,11 @@ public class UISkillSelection : MonoBehaviour
 
             txtSkillNames[i].text = skills[selectedSkillIndex].SkillName;
             imgSkill[i].sprite = skills[selectedSkillIndex].SkillIcon;
+
             btnSkillSelection[i].onClick.RemoveAllListeners();
             int index = skills[selectedSkillIndex].SkillID;
             btnSkillSelection[i].onClick.AddListener(() => Player.instance.PowerUp(index));
+
             skills.RemoveAt(selectedSkillIndex);
         }
     }
