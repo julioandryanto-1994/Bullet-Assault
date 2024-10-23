@@ -14,11 +14,13 @@ public class FadeOutUI : MonoBehaviour
 
     public void StartFadeOut(float duration)
     {
+        Debug.Log("StartFadeOut called with duration: " + duration);
         StartCoroutine(FadeOut(duration));
     }
 
     private IEnumerator FadeOut(float duration)
     {
+        Debug.Log("FadeOut coroutine started.");
         float startAlpha = canvasGroup.alpha;
         float endAlpha = 0f;
         float elapsedTime = 0f;
@@ -27,7 +29,7 @@ public class FadeOutUI : MonoBehaviour
         while (elapsedTime < duration)
         {
             // Calculate the new alpha value
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             float newAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
             canvasGroup.alpha = newAlpha;
             Debug.Log("elapsedTime: " + elapsedTime + " -- alpha " + canvasGroup.alpha);
@@ -38,6 +40,7 @@ public class FadeOutUI : MonoBehaviour
 
         // Ensure the final alpha is set to 0
         canvasGroup.alpha = endAlpha;
+        Time.timeScale = 1;
         // Optionally, disable the GameObject after fading out
         gameObject.SetActive(false);
     }
