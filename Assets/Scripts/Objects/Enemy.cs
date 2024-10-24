@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    public GameObject panelGameOver;
     [SerializeField] private GameObject destroyedVFX;
     [SerializeField] private GameObject explosionVFX;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    
     private Color originalColor;
 
     public float Speed = 2f;
@@ -54,7 +57,8 @@ public class Enemy : MonoBehaviour
             if (player != null)
             {
                 //Player take damge
-                Debug.Log("Player Kena Damage");
+               //Debug.Log("Player Kena Damage");
+               Player.instance.TakeDamage();
             }
 
             //TODO : Harus diganti dengan object pooler

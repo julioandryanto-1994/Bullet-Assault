@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 {
     //Singleton  : Syaratnya object ini harus tunggal
     public static Player instance;
+    public int hpPlayer = 2;
+    public GameObject panelGameOver;
 
     //Movement
     private Vector3 offset;
@@ -113,6 +115,15 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) // Check for space key to trigger spread shooting
         {
             RapidFire();
+        }
+    }
+
+    public void TakeDamage()
+    {
+        hpPlayer--;
+        if (hpPlayer <= 0)
+        {
+            panelGameOver.GetComponent<UIGameOver>().ShowGameOver();
         }
     }
 
