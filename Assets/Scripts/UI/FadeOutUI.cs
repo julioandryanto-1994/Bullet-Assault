@@ -14,13 +14,11 @@ public class FadeOutUI : MonoBehaviour
 
     public void StartFadeOut(float duration)
     {
-        Debug.Log("StartFadeOut called with duration: " + duration);
         StartCoroutine(FadeOut(duration));
     }
 
     private IEnumerator FadeOut(float duration)
     {
-        Debug.Log("FadeOut coroutine started.");
         float startAlpha = canvasGroup.alpha;
         float endAlpha = 0f;
         float elapsedTime = 0f;
@@ -32,7 +30,6 @@ public class FadeOutUI : MonoBehaviour
             elapsedTime += Time.unscaledDeltaTime;
             float newAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
             canvasGroup.alpha = newAlpha;
-            Debug.Log("elapsedTime: " + elapsedTime + " -- alpha " + canvasGroup.alpha);
 
             // Optional: You can yield return null to wait for the next frame
             yield return null;
