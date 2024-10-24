@@ -18,7 +18,6 @@ public class UIScore : MonoBehaviour
     public void UpdateScore(int score)
     {
         textScore.text = "Score: " + score;
-        Debug.Log(score);
         //SetHighScore(score);
     }
 /*
