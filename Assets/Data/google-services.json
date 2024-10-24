@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1032480348110",
+    "firebase_url": "https://buildassault-np-default-rtdb.firebaseio.com",
     "project_id": "buildassault-np",
     "storage_bucket": "buildassault-np.appspot.com"
   },
