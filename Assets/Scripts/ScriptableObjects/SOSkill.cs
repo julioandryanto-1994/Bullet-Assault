@@ -9,6 +9,7 @@ public class SOSkill : ScriptableObject
     public string SkillName;
     public Sprite SkillIcon;
 
+#if UNITY_EDITOR
     [MenuItem("ScriptableObjects/Skill")]
     public static void QuickCreate()
     {
@@ -20,5 +21,6 @@ public class SOSkill : ScriptableObject
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = asset;
     }
+#endif
 
 }

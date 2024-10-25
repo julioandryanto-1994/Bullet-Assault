@@ -1,0 +1,21 @@
+# ninja log v5
+76	1749	7515390888966035	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	c24b7a4215258979
+1	6558	7515390937422117	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	8e252c967c85d6e6
+1767	4550	7515390899152051	D:/Projects/Bullet-Assault/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/55682r4u/obj/arm64-v8a/libswappywrapper.so	453e21c663750b04
+28	5419	7515390926281439	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	7f11b3718a747294
+14	5993	7515390931958081	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	120a69abb0475c56
+59	5541	7515390924197800	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	98f46a1ca4aabf15
+67	5770	7515390926398507	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e53434a60d79e6c9
+8	6253	7515390932135772	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	49f7565d9e993778
+22	6466	7515390936729163	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b5b3c8f639a616f3
+6561	7979	7515390949849289	D:/Projects/Bullet-Assault/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/55682r4u/obj/arm64-v8a/libgame.so	86af1fafa4ed567f
+104	286	7515394447150703	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	c24b7a4215258979
+287	658	7515394449509921	D:/Projects/Bullet-Assault/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/55682r4u/obj/arm64-v8a/libswappywrapper.so	453e21c663750b04
+37	1042	7515394454483924	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	49f7565d9e993778
+72	1098	7515394455069458	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	7f11b3718a747294
+56	1099	7515394455028748	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	98f46a1ca4aabf15
+64	1213	7515394456253686	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e53434a60d79e6c9
+47	1267	7515394456843126	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	120a69abb0475c56
+32	1442	7515394458681521	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b5b3c8f639a616f3
+27	1551	7515394459756042	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	8e252c967c85d6e6
+1551	2061	7515394460530063	D:/Projects/Bullet-Assault/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/55682r4u/obj/arm64-v8a/libgame.so	86af1fafa4ed567f

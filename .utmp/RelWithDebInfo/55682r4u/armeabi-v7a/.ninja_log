@@ -1,0 +1,11 @@
+# ninja log v5
+34	177	7515394500702307	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	999d63300aefe15e
+179	417	7515394502493261	D:/Projects/Bullet-Assault/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/55682r4u/obj/armeabi-v7a/libswappywrapper.so	f5f5849dc771c8e
+23	1009	7515394508943340	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	373692249cf19c94
+8	1015	7515394509030447	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	15e78557294a1fde
+18	1036	7515394509302433	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	cae344c322d812d2
+28	1099	7515394509910603	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	7c614c539cc30d2
+5	1144	7515394510342430	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	f58f6f6358c64349
+0	1432	7515394513021548	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	a7a5ed5fd02d72f1
+14	1435	7515394513016345	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	6d1d6b5d8f05d38b
+1435	1546	7515394514126363	D:/Projects/Bullet-Assault/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/55682r4u/obj/armeabi-v7a/libgame.so	1028154f45e0dac3
